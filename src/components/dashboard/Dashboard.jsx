@@ -30,48 +30,57 @@ class Dashboard extends React.Component {
 
     _getOherAppInfo = () => {
         getOherAppInfo().then(res=>{
-            this.setState({
-                otherInfo:res.data
-            })
+            if(res){
+                this.setState({
+                    otherInfo:res.data
+                })
+            }
+
         })
     };
     get50DayUser = () => {
         get50DayUser().then(res => {
-            const { status, data } = res;
-            if (status == 0) {
-                let xAxisData = [];
-                let Data = [];
-                for (let i = 0; i < data.length; i++) {
-                    xAxisData.push(i);
-                    Data.push(data[i].countValue);
+            if(res){
+                const { status, data } = res;
+                if (status == 0) {
+                    let xAxisData = [];
+                    let Data = [];
+                    for (let i = 0; i < data.length; i++) {
+                        xAxisData.push(i);
+                        Data.push(data[i].countValue);
+                    }
+                    this.setState({
+                        day50xAxisData: xAxisData,
+                        day50Data: Data,
+                    });
                 }
-                this.setState({
-                    day50xAxisData: xAxisData,
-                    day50Data: Data,
-                });
             }
+
         });
     };
     get7DayPlay = () => {
         get7DayPlay().then(res => {
-            const { status, data } = res;
-            if (status == 0) {
-                const year = new Date().getFullYear();
+            if(res){
+                const { status, data } = res;
+                if (status == 0) {
+                    const year = new Date().getFullYear();
 
-                let day7xAxis = [];
-                let day7series = [];
-                for (let i = 0; i < data.length; i++) {
-                    day7xAxis.push(year + '-' + data[i].countKey);
-                    day7series.push(data[i].countValue + '');
+                    let day7xAxis = [];
+                    let day7series = [];
+                    for (let i = 0; i < data.length; i++) {
+                        day7xAxis.push(year + '-' + data[i].countKey);
+                        day7series.push(data[i].countValue + '');
+
+                    }
+                    console.log(day7xAxis, day7series, 'day7series');
+                    this.setState({
+                        day7xAxisData: day7xAxis,
+                        day7seriesData: day7series,
+                    });
 
                 }
-                console.log(day7xAxis, day7series, 'day7series');
-                this.setState({
-                    day7xAxisData: day7xAxis,
-                    day7seriesData: day7series,
-                });
-
             }
+
         });
     };
 

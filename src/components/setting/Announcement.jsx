@@ -42,7 +42,7 @@ class Announcement extends Component {
     _updateNowEdit = () => {
 
         getAnnouncement().then(data => {
-            if (data.status == 0) {
+            if (data&&data.status == 0) {
                 const result = data.data;
                 const title = result.title;
                 const content = result.content;

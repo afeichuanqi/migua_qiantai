@@ -63,4 +63,26 @@ export const GET_50_DAY_NEW_USER =
     testUrl + 'admin/get50DayUser';
 export const GET_APP_OTHER_INFO =
     testUrl + 'admin/getNowDateOrders';
+export const GET_LUN_BO_LIST =
+    testUrl + 'admin/getLunboList';
+export const SET_LUNBO =
+    testUrl + 'admin/setLunbo';
+export const DEL_LUNBO =
+    testUrl + 'admin/delLunbo';
+export const GET_ORDERS =
+    testUrl + 'admin/getOrders';
+export const SEARCH_CONTENT =
+    testUrl + 'admin/searchOrders';
+export const GET_VIPS =
+    testUrl + 'admin/getVips';
+export const SET_VIP =
+    testUrl + 'admin/setVip';
+export const DEL_VIP =
+    testUrl + 'admin/delVip';
+export const GET_LABEL =
+    testUrl + 'admin/getHotLabel';
+export const SET_LABEL =
+    testUrl + 'admin/setHotLabel';
+export const DEL_LABEL =
+    testUrl + 'admin/delHotLabel';
 

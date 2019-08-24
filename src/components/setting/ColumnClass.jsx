@@ -10,6 +10,7 @@ import ColumnClassEdit1 from './Components/ColumnClassEdit';
 import ColumnClassEdit2 from './Components/ColumnClassEdit1';
 import ColumnClassAdd from './Components/ColumnClassAdd';
 import ColumnBigClassEdit from './Components/ColumnBigClassEdit';
+import LunboComponent from './CommonComponent/LunboComponent';
 
 const { Option } = Select;
 
@@ -32,12 +33,15 @@ class ColumnClass extends Component {
 
     _initData = () => {
         getColumns().then(datas => {
-            const { status, data } = datas;
-            if (status == 0) {
-                this.setState({
-                    data,
-                });
+            if(datas){
+                const { status, data } = datas;
+                if (status == 0) {
+                    this.setState({
+                        data,
+                    });
+                }
             }
+
         });
     };
     handleClick = ({ item, key, keyPath, domEvent }) => {
@@ -114,6 +118,9 @@ class ColumnClass extends Component {
                         </Menu.Item>
 
                     </Menu>
+                    {item && item.tab_type == 1 &&
+                        <LunboComponent colunmName={item.tab_title}/>
+                    }
                     <Row style={{ marginTop: 10 }} gutter={16}>
                         <Col span={16}>
                             <div>
@@ -137,50 +144,53 @@ class ColumnClass extends Component {
                             </div>
                         </Col>
                     </Row>
-                    {item && item.tab_type == 1 && <Row style={{ marginTop: 10 }} gutter={24}>
-                        <Col style={{ marginBottom: 10 }}>
-                            <Button type="primary"
-                                    onClick={() => {
-                                        this.handleClick({ key: this.state.current });
-                                    }}
-                                    disabled={loading} loading={loading}
-                            >
-                                刷新
-                            </Button>
+                    {item && item.tab_type == 1 && <div>
 
-                            <Button type="primary"
-                                    onClick={() => {
-                                        const { tab_type, data } = this.state;
-                                        let result = [];
-                                        if (tab_type) {
-                                            for (let i = 0; i < data.length; i++) {
-                                                const item = data[i];
+                        <Row style={{ marginTop: 10 }} gutter={24}>
+                            <Col style={{ marginBottom: 10 }}>
+                                <Button type="primary"
+                                        onClick={() => {
+                                            this.handleClick({ key: this.state.current });
+                                        }}
+                                        disabled={loading} loading={loading}
+                                >
+                                    刷新
+                                </Button>
 
-                                                if (tab_type == item.tab_type) {
-                                                    result.push(item.tab_title);
+                                <Button type="primary"
+                                        onClick={() => {
+                                            const { tab_type, data } = this.state;
+                                            let result = [];
+                                            if (tab_type) {
+                                                for (let i = 0; i < data.length; i++) {
+                                                    const item = data[i];
 
+                                                    if (tab_type == item.tab_type) {
+                                                        result.push(item.tab_title);
+
+                                                    }
                                                 }
+                                                console.log(result);
+                                                this.columnClassEdit.showModal({}, result, true);
                                             }
-                                            console.log(result);
-                                            this.columnClassEdit.showModal({}, result, true);
-                                        }
-                                    }}
-                                    disabled={loading}
-                            >
-                                添加
-                            </Button>
-                        </Col>
-                        {
-                            classItem.length > 0 && <Col>
-                                <Table dataSource={classItem}
-                                       columns={this.columns}/>
-
+                                        }}
+                                        disabled={loading}
+                                >
+                                    添加
+                                </Button>
                             </Col>
+                            {
+                                classItem.length > 0 && <Col>
+                                    <Table bordered dataSource={classItem}
+                                           columns={this.columns}/>
+
+                                </Col>
 
 
-                        }
+                            }
 
-                    </Row>}
+                        </Row>
+                    </div>}
                     {item && item.tab_type == 2 && <Row style={{ marginTop: 10 }} gutter={24}>
                         <Col style={{ marginBottom: 10 }}>
                             <Button type="primary"

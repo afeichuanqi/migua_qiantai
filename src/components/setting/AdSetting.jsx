@@ -14,7 +14,7 @@ class AdSetting extends Component {
     state = {
         data: {},
         loading: false,
-        current:0,
+        current: 0,
     };
 
     componentDidMount() {
@@ -28,7 +28,7 @@ class AdSetting extends Component {
             loading: true,
         });
         getAds().then(datas => {
-            if (datas.status == 0) {
+            if (datas && datas.status == 0) {
                 const data = datas.data[this.dataIndex];
                 console.log(data);
                 this.setState({
@@ -84,7 +84,7 @@ class AdSetting extends Component {
             loading: true,
         });
         setAds(this.state.data).then(result => {
-            if (result.status == 0) {
+            if (result && result.status == 0) {
                 notification.open({
                     message: '广告表操作成功',
                     description:
@@ -110,8 +110,8 @@ class AdSetting extends Component {
     };
     handleClick = ({ item, key, keyPath, domEvent }) => {
         this.setState({
-            current:key,
-        })
+            current: key,
+        });
         switch (key) {
             case 'start':
                 this.dataIndex = 0;
@@ -120,10 +120,11 @@ class AdSetting extends Component {
                 this.dataIndex = 1;
                 break;
             case 'search':
-                this.dataIndex = 2;
+                this.dataIndex = 3;
                 break;
             case 'play':
-                this.dataIndex = 3;
+                this.dataIndex = 2;
+
                 break;
         }
         this._initData();
@@ -151,7 +152,8 @@ class AdSetting extends Component {
             <Spin tip="Loading..." spinning={this.state.loading}>
                 <div className="gutter-example button-demo">
                     <BreadcrumbCustom first="软件配置" second="广告配置"/>
-                    <Menu theme={'dark'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
+                    <Menu theme={'dark'} onClick={this.handleClick} selectedKeys={[this.state.current]}
+                          mode="horizontal">
                         <Menu.Item key="start">
                             <Icon type="book"/>
                             启动页广告

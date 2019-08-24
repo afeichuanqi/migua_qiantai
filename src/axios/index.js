@@ -26,6 +26,20 @@ export const delBigClass = (params) => getParams({ url: config.DEL_BIG_CLASS, da
 export const get7DayPlay = (params) => getParams({ url: config.GET_7_DAY_PLAY_COUNT, data: params});
 export const get50DayUser = (params) => getParams({ url: config.GET_50_DAY_NEW_USER, data: params});
 export const getOherAppInfo = (params) => getParams({ url: config.GET_APP_OTHER_INFO, data: params});
+export const getLunboList = (params) => getParams({ url: config.GET_LUN_BO_LIST, data: params});
+export const setLunbo = (params) => getParams({ url: config.SET_LUNBO, data: params});
+export const delLunbo = (params) => getParams({ url: config.DEL_LUNBO, data: params});
+export const searchOrders = (params) => getParams({ url: config.SEARCH_CONTENT, data: params});
+export const getVips = (params) => getParams({ url: config.GET_VIPS, data: params});
+export const setVip = (params) => getParams({ url: config.SET_VIP, data: params});
+export const delVip = (params) => getParams({ url: config.DEL_VIP, data: params});
+export const getHotLabel = (params) => getParams({ url: config.GET_LABEL, data: params});
+export const setHotLabel = (params) => getParams({ url: config.SET_LABEL, data: params});
+export const delHotLabel = (params) => getParams({ url: config.DEL_LABEL, data: params});
+
+
+
+export const getOrders = (params) => getParams({ url: config.GET_ORDERS, data: params});
 
 export const login = (params) => getParams({ url: config.LOGIN, data: params});
 

@@ -71,22 +71,37 @@ class ColumnClassEdit extends React.Component {
         return (
             <Form className="ant-advanced-search-form">
                 <Row gutter={24}>
+                    {/*<style>*/}
+                    {/*    {`.ant-advanced-search-form {*/}
+                    {/*        padding: 24px;*/}
+                    {/*        background: #fbfbfb;*/}
+                    {/*        border: 1px solid #d9d9d9;*/}
+                    {/*        border-radius: 6px;*/}
+                    {/*    }*/}
 
+                    {/*.ant-advanced-search-form .ant-form-item {*/}
+                    {/*        display: flex;*/}
+                    {/*    }*/}
+
+                    {/*.ant-advanced-search-form .ant-form-item-control-wrapper {*/}
+                    {/*        flex: 1;*/}
+                    {/*    }`}*/}
+                    {/*</style>*/}
                     {data && data.map((item, index, arrs) => {
                         return <div>
-                            {/*<Col span={2}>*/}
-                            {/*    <Form.Item label={'id'}>*/}
-                            {/*        {getFieldDecorator(`params.${index}.id`, {*/}
-                            {/*            initialValue: item.id,*/}
-                            {/*            rules: [*/}
-                            {/*                {*/}
-                            {/*                    required: true,*/}
-                            {/*                    message: 'Input something!',*/}
-                            {/*                },*/}
-                            {/*            ],*/}
-                            {/*        })(<Input disabled placeholder="placeholder"/>)}*/}
-                            {/*    </Form.Item>*/}
-                            {/*</Col>*/}
+                            <Col span={0}>
+                                <Form.Item label={'id'}>
+                                    {getFieldDecorator(`params.${index}.id`, {
+                                        initialValue: item.id,
+                                        rules: [
+                                            {
+                                                required: true,
+                                                message: 'Input something!',
+                                            },
+                                        ],
+                                    })(<Input   disabled placeholder="placeholder"/>)}
+                                </Form.Item>
+                            </Col>
                             <Col span={3}>
                                 <Form.Item label={'标示(需不同)'}>
                                     {getFieldDecorator(`params.${index}.tab_name`, {
@@ -198,6 +213,7 @@ class ColumnClassEdit extends React.Component {
                     </Col>
                 </Row>
             </Form>
+
         );
     }
 
@@ -310,7 +326,7 @@ export default class ColumnBigClassEdit extends React.PureComponent {
             return null;
         }
         return (<Modal
-                title={`编辑类目基本信息(请勿设置同名标题,容易误删)`}
+                title={`编辑类目基本信息`}
                 visible={this.state.visible}
                 cancelText={'取消'}
                 onCancel={this.handleCancel}

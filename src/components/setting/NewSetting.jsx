@@ -16,7 +16,7 @@ class NewSetting extends Component {
         loading: true,
         title: '',
         keyWord: '',
-        current:1,
+        current: 1,
     };
 
     componentDidMount() {
@@ -27,12 +27,16 @@ class NewSetting extends Component {
     _initData = () => {
         this.setState({ loading: true });
         getNews({ type: this.dataIndex }).then(datas => {
-            const { data, status } = datas;
-            if (status == 0) {
-                this.setState({
-                    data,
-                });
+            if(datas){
+                const { data = {}, status = -1 } = datas;
+                if (status == 0) {
+                    this.setState({
+                        data,
+                    });
+                }
             }
+
+
             this.setState({ loading: false });
         });
     };
@@ -58,8 +62,8 @@ class NewSetting extends Component {
     };
     handleClick = ({ item, key, keyPath, domEvent }) => {
         this.setState({
-            current:key,
-        })
+            current: key,
+        });
         switch (key) {
             case 'one':
                 this.dataIndex = 1;
@@ -121,17 +125,18 @@ class NewSetting extends Component {
             <Spin tip="Loading..." spinning={loading}>
                 <div className="gutter-example button-demo">
                     <BreadcrumbCustom first="软件配置" second="栏目配置"/>
-                    <Menu theme={'dark'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
+                    <Menu theme={'dark'} onClick={this.handleClick} selectedKeys={[this.state.current]}
+                          mode="horizontal">
                         <Menu.Item key="one">
-                            <Icon type="align-center" />
+                            <Icon type="align-center"/>
                             第一栏
                         </Menu.Item>
                         <Menu.Item key="two">
-                            <Icon type="align-left" />
+                            <Icon type="align-left"/>
                             第二栏
                         </Menu.Item>
                         <Menu.Item key="three">
-                            <Icon type="align-right" />
+                            <Icon type="align-right"/>
                             第三栏
                         </Menu.Item>
                     </Menu>
@@ -140,10 +145,12 @@ class NewSetting extends Component {
                             <Collapse>
                                 <Panel header="新建" key="1">
                                     <div>
-                                        <a >标题</a>
-                                        <Input style={{marginTop:5,marginBottom:5}} onChange={this._clickTitleChange} value={title}/>
-                                        <a >关键字</a>
-                                        <Input style={{marginTop:5,marginBottom:5}} onChange={this._clickKeyWordChange} value={keyWord}/>
+                                        <a>标题</a>
+                                        <Input style={{ marginTop: 5, marginBottom: 5 }}
+                                               onChange={this._clickTitleChange} value={title}/>
+                                        <a>关键字</a>
+                                        <Input style={{ marginTop: 5, marginBottom: 5 }}
+                                               onChange={this._clickKeyWordChange} value={keyWord}/>
                                         <Button style={{ marginTop: 5 }} disabled={loading} loading={loading}
                                                 type="primary"
                                                 onClick={this._saveHotConfig} size={'small'}>新建</Button>
@@ -172,12 +179,12 @@ class NewSetting extends Component {
                                 </List.Item>
                                 <ButtonGroup>
                                     <Button onClick={() => this._onMoveClick(item.keyid)} type="primary">
-                                        <Icon type="up" />
+                                        <Icon type="up"/>
                                         上移
                                     </Button>
                                     <Button onClick={() => this._downMoveClick(item.keyid)} type="primary">
                                         下移
-                                        <Icon type="down" />
+                                        <Icon type="down"/>
                                     </Button>
                                     <Button onClick={() => this._delMoveClick(item.keyid)} type="primary">
 
@@ -196,10 +203,10 @@ class NewSetting extends Component {
     }
 
     _delMoveClick = (id) => {
-        this.setState({loading:true})
-        delNews({type:this.dataIndex,id}).then(data=>{
-            if(data){
-                this.setState({loading:false})
+        this.setState({ loading: true });
+        delNews({ type: this.dataIndex, id }).then(data => {
+            if (data) {
+                this.setState({ loading: false });
             }
             notification.open({
                 message: '删除成功',
@@ -209,7 +216,7 @@ class NewSetting extends Component {
                     console.log('Notification Clicked!');
                 },
             });
-        })
+        });
         this._initData();
 
     };

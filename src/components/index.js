@@ -9,6 +9,9 @@ import UserAll from './users/UserAll';
 import AdSetting from './setting/AdSetting';
 import NewSetting from './setting/NewSetting';
 import ColumnClass from './setting/ColumnClass';
+import AllOrders from './orders/AllOrders';
+import VipSetting from './setting/VipSetting';
+import HotLabel from './setting/HotLabel';
 // import Announcement from './setting/Announcement';
 const AnnouncementBundle = Loadable({
     // 按需加载富文本配置
@@ -26,5 +29,8 @@ export default {
     NewSetting,
     //广告表
     AnnouncementBundle,
-    ColumnClass
+    ColumnClass,
+    AllOrders,
+    VipSetting,
+    HotLabel
 };

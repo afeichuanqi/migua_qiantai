@@ -78,10 +78,10 @@ class ColumnClassEdit extends React.Component {
             <Form className="ant-advanced-search-form" onSubmit={this.handleSearch}>
                 <Row gutter={24}>
 
-                    {!isAdd && <Col span={12}>
+                    <Col span={isAdd ? 0 : 12}>
                         <Form.Item label={`id`}>
                             {getFieldDecorator(`id`, {
-                                initialValue: data && data.id,
+                                initialValue: isAdd ? 0 : data && data.id,
                                 rules: [
                                     {
                                         required: true,
@@ -90,7 +90,7 @@ class ColumnClassEdit extends React.Component {
                                 ],
                             })(<Input disabled={true} placeholder="placeholder"/>)}
                         </Form.Item>
-                    </Col>}
+                    </Col>
 
                     <Col span={12}>
                         <Form.Item label={`展示的视频序号`}>
@@ -255,6 +255,7 @@ export default class ColumnClassEdit1 extends React.PureComponent {
                 onCancel={this.handleCancel}
                 width={900}
             >
+
                 <UserEditForm isAdd={isAdd} tab_types={tab_types}  {...this.props} data={data}/>
             </Modal>
         );

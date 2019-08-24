@@ -47,7 +47,9 @@ export function comptime(beginTime, endTime) {
     }
     return 0;
 }
-
+export function  isToday(str) {
+    return new Date().getTime() - new Date(str).getTime() < 86400000;
+}
 export function addDate(date, days) {
     if (days === undefined || days === '') {
         days = 1;

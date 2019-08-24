@@ -30,7 +30,7 @@ class ColumnClassEdit extends React.Component {
 
 
     handleSearch = e => {
-        e.preventDefault();
+        e && e.preventDefault();
 
         this.props.form.validateFieldsAndScroll((err, values) => {
             if (err && err.params && err.params.length > 0) {
@@ -143,7 +143,7 @@ class ColumnClassEdit extends React.Component {
                                 })(<Input placeholder="placeholder"/>)}
                             </Form.Item>
                         </Col>
-                            <Col span={6}>
+                            <Col span={4}>
                                 <Form.Item label={'关键字'}>
                                     {getFieldDecorator(`params.${index}.keyword`, {
                                         initialValue: item.keyword,
@@ -169,25 +169,35 @@ class ColumnClassEdit extends React.Component {
                                     })(<Input placeholder="placeholder"/>)}
                                 </Form.Item>
                             </Col>
-                            <Col span={3}>
+                            <Col span={5}>
                                 <Form.Item label={'操作'}>
                                     <div style={{}}>
                                         <Popconfirm placement="top" title={'确认删除弹窗'} onConfirm={() => {
                                             const { data } = this.state;
+                                            // if(){
+                                            //
+                                            // }
                                             const { classnames } = data;
-                                            console.log(index);
                                             const classnamesCopy = JSON.parse(classnames);
                                             classnamesCopy.splice(index, 1);
 
                                             data.classnames = JSON.stringify(classnamesCopy);
+
                                             this.setState({
                                                 data,
+                                            },()=>{
+                                                this.handleSearch();
                                             });
                                         }} okText="Yes" cancelText="No">
-                                            <Button  type="primary" loading={this.state.loading}>
+                                            <Button size={'small'} type="primary" loading={this.state.loading}>
                                                 删除
                                             </Button>
                                         </Popconfirm>
+                                        <Button type="primary" onClick={()=>{
+                                            this.handleSearch()
+                                        }} size={'small'} loading={this.state.loading}>
+                                            更新/保存
+                                        </Button>
                                     </div>
                                 </Form.Item>
                             </Col>
@@ -198,9 +208,9 @@ class ColumnClassEdit extends React.Component {
                 </Row>
                 <Row>
                     <Col span={24} style={{ textAlign: 'right' }}>
-                        <Button type="primary" htmlType="submit" loading={this.state.loading}>
-                            提交
-                        </Button>
+                        {/*<Button type="primary" htmlType="submit" loading={this.state.loading}>*/}
+                        {/*    提交*/}
+                        {/*</Button>*/}
 
                         <Button style={{ marginLeft: 8 }} loading={this.state.loading} onClick={() => {
                             const { data } = this.state;

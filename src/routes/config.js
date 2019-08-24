@@ -20,6 +20,16 @@ export default {
                 { key: '/app/setting/adSetting', title: '广告配置', component: 'AdSetting' },
                 { key: '/app/setting/newSetting', title: '最新配置', component: 'NewSetting' },
                 { key: '/app/setting/columnClass', title: '首页栏目', component: 'ColumnClass' },
+                { key: '/app/setting/vipSetting', title: 'VIP价格', component: 'VipSetting' },
+                { key: '/app/setting/hotLabel', title: '热门标签', component: 'HotLabel' },
+            ],
+        },
+        {
+            key: '/app/orders',
+            title: '订单管理',
+            icon: 'bars',
+            subs: [
+                { key: '/app/orders/allOrders', title: ' 所有订单', component: 'AllOrders' },
             ],
         },
     ],

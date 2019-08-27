@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Table, Input, InputNumber, Popconfirm, Form, notification, Button } from 'antd';
+import { Table, Input, InputNumber, Popconfirm, Form, notification, Button, Select } from 'antd';
 import { getLunboList, setLunbo, delLunbo } from '../../../axios';
-
+const { Option } = Select;
 const EditableContext = React.createContext();
+let columns1 = [];
 
 class EditableCell extends React.Component {
     getInput = () => {
@@ -54,7 +55,7 @@ class EditableCell extends React.Component {
 class EditableTable extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { data: [], editingKey: '' ,loading:true,};
+        this.state = { data: [], editingKey: '', loading: true };
         this.columns = [
             {
                 title: 'id',
@@ -71,13 +72,21 @@ class EditableTable extends React.Component {
             {
                 title: '封面url',
                 dataIndex: 'coverpic',
-                width: '30%',
+                width: '15%',
                 editable: true,
+            },
+            {
+                title: '所属栏目',
+                dataIndex: 'colunmName',
+                width: '15%',
+                editable: true,
+
             }, {
                 title: '播放ID',
                 dataIndex: 'playerId',
                 width: '6%',
                 editable: true,
+
             },
             {
                 title: '操作',
@@ -126,7 +135,7 @@ class EditableTable extends React.Component {
                                             });
                                         }
                                     });
-                                }else{
+                                } else {
                                     const NewData = [...this.state.data];
                                     NewData.splice(this.state.data.length - 1, 1);
                                     this.setState({ data: NewData });
@@ -145,14 +154,23 @@ class EditableTable extends React.Component {
     }
 
     componentDidMount() {
-        this.getLunboList();
+        // console.log('我被调用');
+        this.getLunboList(this.props.colunmName);
     }
 
-    getLunboList = () => {
+    componentWillReceiveProps(nextProps, nextContext) {
+        if (this.props.colunmName != nextProps.colunmName) {
+            // this.props.colunmName
+            this.getLunboList(nextProps.colunmName);
+        }
+    }
+
+    getLunboList = (colunmName) => {
         this.setState({
-            loading:true,
-        })
-        getLunboList({ colunmName: this.props.colunmName }).then(res => {
+            loading: true,
+        });
+        getLunboList({ colunmName }).then(res => {
+            // consol
             if (res && res.status == 0) {
 
                 const data = res.data;
@@ -161,8 +179,8 @@ class EditableTable extends React.Component {
                 });
             }
             this.setState({
-                loading:false,
-            })
+                loading: false,
+            });
         });
     };
 
@@ -185,7 +203,7 @@ class EditableTable extends React.Component {
             if (index > -1) {
                 const item = newData[index];
                 console.log(item, 'index111');
-                setLunbo({ ...row, id: item.id, colunmName: this.props.colunmName }).then(res => {
+                setLunbo({ ...row, id: item.id }).then(res => {
                     if (res) {
                         const { status, data } = res;
                         if (status == 0) {
@@ -194,7 +212,7 @@ class EditableTable extends React.Component {
                                 ...item,
                                 ...row,
                             });
-                            this.getLunboList();
+                            this.getLunboList(this.props.colunmName);
                             this.setState({ data: newData, editingKey: '' });
                             notification.open({
                                 message: '保存成功',
@@ -220,9 +238,9 @@ class EditableTable extends React.Component {
     }
 
     render() {
-        if (this.state.data.length == 0) {
-            return null;
-        }
+        // if (this.state.data.length == 0) {
+        //     return null;
+        // }
         const components = {
             body: {
                 cell: EditableCell,
@@ -244,27 +262,27 @@ class EditableTable extends React.Component {
                 }),
             };
         });
-
+        columns1 = this.props.columns;
         return (
             <div>
                 <EditableContext.Provider value={this.props.form}>
-                    <div style={{marginTop:10}}>
+                    <div style={{ marginTop: 10 }}>
                         <span>轮播图设置</span>
                     </div>
                     <Button style={{ marginTop: 10, marginBottom: 10 }} type="primary"
                             onClick={() => {
                                 const NewData = [...this.state.data];
                                 NewData.push({
-                                        id: 0,
-                                        title: '',
-                                        coverpic: '',
-                                        playerId: '',
-                                        colunmName: '',
-                                    });
+                                    id: 0,
+                                    title: '',
+                                    coverpic: '',
+                                    playerId: '',
+                                    colunmName: '',
+                                });
                                 this.setState({
-                                    data:NewData,
-                                    editingKey:0
-                                })
+                                    data: NewData,
+                                    editingKey: 0,
+                                });
                             }}
                             loading={this.state.loading}
 
@@ -273,7 +291,7 @@ class EditableTable extends React.Component {
                     </Button>
                     <Button style={{ marginTop: 10, marginBottom: 10 }} type="primary"
                             onClick={() => {
-                                this.getLunboList();
+                                this.getLunboList(this.props.colunmName);
 
                             }}
                             loading={this.state.loading}
@@ -281,7 +299,7 @@ class EditableTable extends React.Component {
                     >
                         刷新
                     </Button>
-                    <Table
+                    {this.state.data.length > 0 && <Table
                         components={components}
                         bordered
                         dataSource={this.state.data}
@@ -291,7 +309,8 @@ class EditableTable extends React.Component {
                             onChange: this.cancel,
                         }}
                         loading={this.state.loading}
-                    />
+                    />}
+
                 </EditableContext.Provider>
             </div>
         );

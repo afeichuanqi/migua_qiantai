@@ -85,4 +85,6 @@ export const SET_LABEL =
     testUrl + 'admin/setHotLabel';
 export const DEL_LABEL =
     testUrl + 'admin/delHotLabel';
+export const USER_PLAY_NO =
+    testUrl + 'admin/userPlayNo';
 

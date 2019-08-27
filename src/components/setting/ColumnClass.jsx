@@ -89,18 +89,32 @@ class ColumnClass extends Component {
 
     render() {
         const { data, loading, item, classItem } = this.state;
-        if (data.length > 0) {
+        if (data && data.length > 0) {
             data.sort((a, b) => {
                 return a.sort_num - b.sort_num;
             });
         }
+        const { tab_type } = this.state;
+        let result = [];
+        if (tab_type) {
+            for (let i = 0; i < data.length; i++) {
+                const item = data[i];
+
+                if (tab_type == item.tab_type) {
+                    result.push(item.tab_title);
+
+                }
+            }
+        }
+            // console.log(result);
+        // console.log(item);
         return (
             <Spin tip="Loading..." spinning={loading}>
                 <div className="gutter-example button-demo">
                     <BreadcrumbCustom first="软件配置" second="最新页面配置"/>
                     <Menu theme={'dark'} onClick={this.handleClick} selectedKeys={[this.state.current]}
                           mode="horizontal">
-                        {data.length > 0 && data.map((item, index, arr) => {
+                        {data && data.length > 0 && data.map((item, index, arr) => {
                             return <Menu.Item key={item.tab_name}>
                                 <Icon type="align-center"/>
                                 {item.tab_title}
@@ -118,8 +132,8 @@ class ColumnClass extends Component {
                         </Menu.Item>
 
                     </Menu>
-                    {item && item.tab_type == 1 &&
-                        <LunboComponent colunmName={item.tab_title}/>
+                    {item && item.tab_type === 1 &&
+                        <LunboComponent columns={result} colunmName={item.tab_title}/>
                     }
                     <Row style={{ marginTop: 10 }} gutter={16}>
                         <Col span={16}>
@@ -144,7 +158,7 @@ class ColumnClass extends Component {
                             </div>
                         </Col>
                     </Row>
-                    {item && item.tab_type == 1 && <div>
+                    {item && item.tab_type === 1 && <div>
 
                         <Row style={{ marginTop: 10 }} gutter={24}>
                             <Col style={{ marginBottom: 10 }}>
@@ -204,20 +218,21 @@ class ColumnClass extends Component {
 
                             <Button type="primary"
                                     onClick={() => {
-                                        const { tab_type, data } = this.state;
-                                        let result = [];
-                                        if (tab_type) {
-                                            for (let i = 0; i < data.length; i++) {
-                                                const item = data[i];
-
-                                                if (tab_type == item.tab_type) {
-                                                    result.push(item.tab_title);
-
-                                                }
-                                            }
-                                            console.log(result);
-                                            this.columnClassEdit1.showModal(classItem[0], result, false);
-                                        }
+                                        // const { tab_type, data } = this.state;
+                                        // let result = [];
+                                        // if (tab_type) {
+                                        //     for (let i = 0; i < data.length; i++) {
+                                        //         const item = data[i];
+                                        //
+                                        //         if (tab_type == item.tab_type) {
+                                        //             result.push(item.tab_title);
+                                        //
+                                        //         }
+                                        //     }
+                                        //     console.log(result);
+                                        //
+                                        // }
+                                        this.columnClassEdit1.showModal(classItem[0], result, false);
 
                                     }}
                                     disabled={loading}
@@ -252,7 +267,7 @@ class ColumnClass extends Component {
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         const { data } = this.state;
-        if (data.length > 0 && !this.isClickhandle) {
+        if (data && data.length > 0 && !this.isClickhandle) {
             this.isClickhandle = true;
             const item = data[0];
             this.handleClick({ key: item.tab_name });
@@ -271,8 +286,8 @@ class ColumnClass extends Component {
             dataIndex: 'playerIds',
             key: 'playerIds',
             render: (text, record) => (
-                text && text.split(',').map((item, index, arrs) => {
-                    return <Tag key={index}>{item}</Tag>;
+                JSON.parse(text).map((item, index, arrs) => {
+                    return <Tag key={index}>{item.id}</Tag>;
                 })
             ),
         },

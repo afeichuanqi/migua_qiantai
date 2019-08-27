@@ -148,12 +148,14 @@ class AllOrders extends React.Component {
             title: 'id',
             dataIndex: 'id',
             key: 'id',
+            width:'5%'
             // render: text => <a>{text}</a>,
         },
         {
             title: '订单id',
             dataIndex: 'order_id',
             key: 'order_id',
+            width:'10%',
             render: text => <a onClick={() => {
                 this.setState({
                     inputValue: text,
@@ -164,6 +166,7 @@ class AllOrders extends React.Component {
             title: '用户id',
             dataIndex: 'userid',
             key: 'userid',
+            width:'5%',
             render: text => <a onClick={() => {
                 this.setState({
                     inputValue: text,
@@ -174,10 +177,12 @@ class AllOrders extends React.Component {
             title: '价格',
             dataIndex: 'price',
             key: 'price',
+            width:'10%',
         }, {
             title: '创建时间',
             dataIndex: 'create_date1',
             key: 'create_date',
+            width:'10%',
             render: text => <div>
                 <a onClick={() => {
                     this.setState({
@@ -193,11 +198,13 @@ class AllOrders extends React.Component {
             title: '订单状态',
             dataIndex: 'order_status',
             key: 'order_status',
+            width:'15%',
             render: text => <a style={{ color: 'red' }}>{text == 0 ? '未支付' : '成功支付'}</a>,
         }, {
             title: '订单描述',
             dataIndex: 'order_desc',
             key: 'order_desc',
+            width:'15%',
             render: text => <a onClick={() => {
                 this.setState({
                     inputValue: text,
@@ -207,6 +214,7 @@ class AllOrders extends React.Component {
             title: 'aoid',
             dataIndex: 'aoid',
             key: 'aoid',
+            width:'10%',
             render: text => <a onClick={() => {
                 this.setState({
                     inputValue: text,
@@ -214,6 +222,7 @@ class AllOrders extends React.Component {
             }}>{text}</a>,
         }, {
             title: '付款时间',
+            width:'10%',
             dataIndex: 'pay_time1',
             key: 'pay_time',
         },

@@ -6,6 +6,7 @@ import Loadable from 'react-loadable';
 import Loading from './widget/Loading';
 import Dashboard from './dashboard/Dashboard';
 import UserAll from './users/UserAll';
+import UserPlay from './users/UserPlay';
 import AdSetting from './setting/AdSetting';
 import NewSetting from './setting/NewSetting';
 import ColumnClass from './setting/ColumnClass';
@@ -32,5 +33,6 @@ export default {
     ColumnClass,
     AllOrders,
     VipSetting,
-    HotLabel
+    HotLabel,
+    UserPlay
 };

@@ -256,7 +256,7 @@ class EditableTable extends React.Component {
             <div>
                 <EditableContext.Provider value={this.props.form}>
                     <div style={{ marginTop: 10 }}>
-                        <span>vip价格配置</span>
+                        <span>热门标签</span>
                     </div>
                     <Button loading={this.state.loading} style={{ marginTop: 10, marginBottom: 10 }} type="primary"
                             onClick={() => {

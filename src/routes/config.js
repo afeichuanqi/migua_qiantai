@@ -9,6 +9,7 @@ export default {
             icon: 'bars',
             subs: [
                 { key: '/app/users/userAll', title: '用户表', component: 'UserAll' },
+                { key: '/app/users/UserPlay', title: '播放记录', component: 'UserPlay' },
             ],
         },
         {

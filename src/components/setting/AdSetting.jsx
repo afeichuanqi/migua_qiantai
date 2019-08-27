@@ -124,6 +124,8 @@ class AdSetting extends Component {
                 break;
             case 'play':
                 this.dataIndex = 2;
+            case 'share':
+                this.dataIndex = 4;
 
                 break;
         }
@@ -147,6 +149,9 @@ class AdSetting extends Component {
             case 4:
                 addr = '启动页广告';
                 break;
+            case 5:
+                addr = '推广页广告';
+                break;
         }
         return (
             <Spin tip="Loading..." spinning={this.state.loading}>
@@ -169,6 +174,10 @@ class AdSetting extends Component {
                         <Menu.Item key="play">
                             <Icon type="play-circle"/>
                             播放页广告
+                        </Menu.Item>
+                        <Menu.Item key="share">
+                            <Icon type="play-circle"/>
+                            推广页图片
                         </Menu.Item>
                     </Menu>
                     {data && <Descriptions style={{ marginTop: 10 }} title="广告设置" bordered>

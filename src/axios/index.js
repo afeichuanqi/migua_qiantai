@@ -36,6 +36,7 @@ export const delVip = (params) => getParams({ url: config.DEL_VIP, data: params}
 export const getHotLabel = (params) => getParams({ url: config.GET_LABEL, data: params});
 export const setHotLabel = (params) => getParams({ url: config.SET_LABEL, data: params});
 export const delHotLabel = (params) => getParams({ url: config.DEL_LABEL, data: params});
+export const userPlayNo = (params) => getParams({ url: config.USER_PLAY_NO, data: params});
 
 
 

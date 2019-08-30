@@ -124,10 +124,11 @@ class AdSetting extends Component {
                 break;
             case 'play':
                 this.dataIndex = 2;
-            case 'share':
-                this.dataIndex = 4;
-
                 break;
+            // case 'share':
+            //     this.dataIndex = 4;
+
+
         }
         this._initData();
     };
@@ -175,10 +176,10 @@ class AdSetting extends Component {
                             <Icon type="play-circle"/>
                             播放页广告
                         </Menu.Item>
-                        <Menu.Item key="share">
-                            <Icon type="play-circle"/>
-                            推广页图片
-                        </Menu.Item>
+                        {/*<Menu.Item key="share">*/}
+                        {/*    <Icon type="play-circle"/>*/}
+                        {/*    推广页图片*/}
+                        {/*</Menu.Item>*/}
                     </Menu>
                     {data && <Descriptions style={{ marginTop: 10 }} title="广告设置" bordered>
                         <Descriptions.Item span={1} label="修改"><span

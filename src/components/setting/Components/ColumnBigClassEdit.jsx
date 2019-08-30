@@ -99,7 +99,7 @@ class ColumnClassEdit extends React.Component {
                                                 message: 'Input something!',
                                             },
                                         ],
-                                    })(<Input   disabled placeholder="placeholder"/>)}
+                                    })(<Input disabled placeholder="placeholder"/>)}
                                 </Form.Item>
                             </Col>
                             <Col span={3}>
@@ -185,7 +185,7 @@ class ColumnClassEdit extends React.Component {
                                             </Button>
                                         </Popconfirm>
                                         <Popconfirm placement="top" title={'确认更新/添加是否确认?'} onConfirm={() => {
-                                            this.updateClass(index);
+                                            this.updateClass(index, item.tab_title);
                                         }} okText="Yes" cancelText="No">
                                             <Button type="primary">
                                                 更新/添加
@@ -233,15 +233,16 @@ class ColumnClassEdit extends React.Component {
             data,
         });
     };
-    updateClass = (index) => {
+    updateClass = (index, oldTitle) => {
         this.props.form.validateFieldsAndScroll((err, values) => {
             const params = values.params[index];
+            params.oldTitle = oldTitle;
             setBigClass(params).then(res => {
                 if (res.status == 0) {
                     this.props.onSuccess();
                     const { data } = this.state;
                     const id = res.data.insertId;
-                    console.log("id",id);
+                    console.log('id', id);
                     params.id = id;
                     data[index] = params;
                     this.setState({ data });

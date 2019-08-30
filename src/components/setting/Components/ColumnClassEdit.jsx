@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form, Row, Col, Input, Button, Modal, Select, notification, Popconfirm } from 'antd';
 import { setClass, delClass } from '../../../axios';
-
+const { TextArea } = Input;
 const { Option } = Select;
 
 class ColumnClassEdit extends React.Component {
@@ -102,7 +102,7 @@ class ColumnClassEdit extends React.Component {
                                         message: 'Input something!',
                                     },
                                 ],
-                            })(<Input placeholder="placeholder"/>)}
+                            })(<TextArea rows={3} placeholder="placeholder"/>)}
                         </Form.Item>
                     </Col>
                     <Col span={12}>
@@ -121,7 +121,7 @@ class ColumnClassEdit extends React.Component {
                     <Col span={12}>
                         <Form.Item label={`大类目`}>
                             {getFieldDecorator(`columnname`, {
-                                initialValue: data && data.columnname,
+                                initialValue: this.props.colunmName,
                                 rules: [
                                     {
                                         required: true,
@@ -248,7 +248,7 @@ export default class ColumnClassEdit1 extends React.PureComponent {
             return null;
         }
         return (<Modal
-                title={'添加用户基本信息'}
+                title={'修改增加类目'}
                 visible={this.state.visible}
                 // onOk={this.handleOk}
                 cancelText={'取消'}
@@ -256,7 +256,7 @@ export default class ColumnClassEdit1 extends React.PureComponent {
                 width={900}
             >
 
-                <UserEditForm isAdd={isAdd} tab_types={tab_types}  {...this.props} data={data}/>
+                <UserEditForm  isAdd={isAdd} tab_types={tab_types}  {...this.props} data={data}/>
             </Modal>
         );
     }

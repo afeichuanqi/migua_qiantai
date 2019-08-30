@@ -18,7 +18,7 @@ class ColumnClass extends Component {
     state = {
         data: [],
         loading: false,
-        current: '111',
+        current: 'jingxuan',
         item: {},
         classItem: {},
         tab_type: 0,
@@ -33,7 +33,7 @@ class ColumnClass extends Component {
 
     _initData = () => {
         getColumns().then(datas => {
-            if(datas){
+            if (datas) {
                 const { status, data } = datas;
                 if (status == 0) {
                     this.setState({
@@ -44,6 +44,7 @@ class ColumnClass extends Component {
 
         });
     };
+    tab_type = 0;
     handleClick = ({ item, key, keyPath, domEvent }) => {
         if (key == 'delete') {
             this.setState({ loading: false });
@@ -106,7 +107,7 @@ class ColumnClass extends Component {
                 }
             }
         }
-            // console.log(result);
+        // console.log(result);
         // console.log(item);
         return (
             <Spin tip="Loading..." spinning={loading}>
@@ -127,13 +128,13 @@ class ColumnClass extends Component {
                         {/*    增加*/}
                         {/*</Menu.Item>*/}
                         <Menu.Item key={'delete'}>
-                            <Icon type="edit" theme="twoTone" />
+                            <Icon type="edit" theme="twoTone"/>
                             编辑所有类目
                         </Menu.Item>
 
                     </Menu>
                     {item && item.tab_type === 1 &&
-                        <LunboComponent columns={result} colunmName={item.tab_title}/>
+                    <LunboComponent columns={result} colunmName={item.tab_title}/>
                     }
                     <Row style={{ marginTop: 10 }} gutter={16}>
                         <Col span={16}>
@@ -249,7 +250,7 @@ class ColumnClass extends Component {
 
 
                 </div>
-                <ColumnClassEdit1 onSuccess={this._onSuccess} ref={ref => this.columnClassEdit = ref}/>
+                <ColumnClassEdit1 colunmName={item.tab_title} onSuccess={this._onSuccess} ref={ref => this.columnClassEdit = ref}/>
                 <ColumnClassEdit2 onSuccess={this._onSuccess} ref={ref => this.columnClassEdit1 = ref}/>
                 <ColumnClassAdd onSuccess={this._onSuccess1} ref={ref => this.columnClassAdd = ref}/>
                 <ColumnBigClassEdit onSuccess={this._onSuccess1} ref={ref => this.columnClassDelete = ref}/>

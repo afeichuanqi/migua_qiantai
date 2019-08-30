@@ -105,17 +105,7 @@ class UserPlay extends Component {
             ),
 
         },
-        {
-            title: '标题',
-            dataIndex: 'title',
-            key: 'title',
-            render: (text, record) => (
-                <div>
-                    <span>{text}</span>
 
-                </div>
-            ),
-        },
         {
             title: '类目',
             dataIndex: 'topname',
@@ -127,7 +117,7 @@ class UserPlay extends Component {
             ),
         },
         {
-            title: '类目',
+            title: '小类目',
             dataIndex: 'typename',
             key: 'typename',
             render: (text, record) => (

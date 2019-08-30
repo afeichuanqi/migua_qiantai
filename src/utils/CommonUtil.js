@@ -1,5 +1,4 @@
-
-export function getCurrentDate(format) {
+export const getCurrentDate = (format) => {
     let now = new Date();
     let year = now.getFullYear(); //得到年份
     let month = now.getMonth();//得到月份
@@ -9,24 +8,24 @@ export function getCurrentDate(format) {
     let minu = now.getMinutes();//得到分钟
     let sec = now.getSeconds();//得到秒
     month = month + 1;
-    if (month < 10) month = "0" + month;
-    if (date < 10) date = "0" + date;
-    if (hour < 10) hour = "0" + hour;
-    if (minu < 10) minu = "0" + minu;
-    if (sec < 10) sec = "0" + sec;
-    let time = "";
+    if (month < 10) month = '0' + month;
+    if (date < 10) date = '0' + date;
+    if (hour < 10) hour = '0' + hour;
+    if (minu < 10) minu = '0' + minu;
+    if (sec < 10) sec = '0' + sec;
+    let time = '';
     //精确到天
     if (format === 1) {
-        time = year + "-" + month + "-" + date;
+        time = year + '-' + month + '-' + date;
     }
     //精确到分
     else if (format === 2) {
-        time = year + "-" + month + "-" + date + " " + hour + ":" + minu + ":" + sec;
+        time = year + '-' + month + '-' + date + ' ' + hour + ':' + minu + ':' + sec;
     }
     return time;
-}
+};
 
-export function comptime(beginTime, endTime) {
+export const comptime = (beginTime, endTime) => {
     const beginTimes = beginTime.substring(0, 10).split('-');
     const endTimes = endTime.substring(0, 10).split('-');
 
@@ -46,11 +45,13 @@ export function comptime(beginTime, endTime) {
         return 0;
     }
     return 0;
-}
-export function  isToday(str) {
+};
+
+export function isToday(str) {
     return new Date().getTime() - new Date(str).getTime() < 86400000;
 }
-export function addDate(date, days) {
+
+export const addDate = (date, days) => {
     if (days === undefined || days === '') {
         days = 1;
     }
@@ -61,8 +62,9 @@ export function addDate(date, days) {
     var hour = date.getHours();//得到小时
     var minu = date.getMinutes();//得到分钟
     var sec = date.getSeconds();//得到秒
-    return date.getFullYear() + '-' + getFormatDate(month) + '-' + getFormatDate(day)+" " +getFormatDate(hour)+":"+getFormatDate(minu)+":"+getFormatDate(sec);
-}
+    return date.getFullYear() + '-' + getFormatDate(month) + '-' + getFormatDate(day) + ' ' + getFormatDate(hour) + ':' + getFormatDate(minu) + ':' + getFormatDate(sec);
+};
+
 // 日期月份/天的显示，如果是1位数，则在前面加上'0'
 function getFormatDate(arg) {
     if (arg === undefined || arg === '') {

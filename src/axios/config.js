@@ -87,4 +87,6 @@ export const DEL_LABEL =
     testUrl + 'admin/delHotLabel';
 export const USER_PLAY_NO =
     testUrl + 'admin/userPlayNo';
+export const GET_ALL_VIDEOS =
+    testUrl + 'admin/getAllVideos';
 

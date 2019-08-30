@@ -32,6 +32,13 @@ export default {
             subs: [
                 { key: '/app/orders/allOrders', title: ' 所有订单', component: 'AllOrders' },
             ],
+        },{
+            key: '/app/allVideos',
+            title: '所有片库',
+            icon: 'bars',
+            subs: [
+                { key: '/app/video/allVideos', title: ' 片库列表', component: 'AllVideos' },
+            ],
         },
     ],
     others: [], // 非菜单相关路由

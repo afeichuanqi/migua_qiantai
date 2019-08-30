@@ -37,9 +37,7 @@ export const getHotLabel = (params) => getParams({ url: config.GET_LABEL, data: 
 export const setHotLabel = (params) => getParams({ url: config.SET_LABEL, data: params});
 export const delHotLabel = (params) => getParams({ url: config.DEL_LABEL, data: params});
 export const userPlayNo = (params) => getParams({ url: config.USER_PLAY_NO, data: params});
-
-
-
+export const getAllVideo = (params) => getParams({ url: config.GET_ALL_VIDEOS, data: params});
 export const getOrders = (params) => getParams({ url: config.GET_ORDERS, data: params});
 
 export const login = (params) => getParams({ url: config.LOGIN, data: params});

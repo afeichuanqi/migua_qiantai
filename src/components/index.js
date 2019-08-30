@@ -13,6 +13,7 @@ import ColumnClass from './setting/ColumnClass';
 import AllOrders from './orders/AllOrders';
 import VipSetting from './setting/VipSetting';
 import HotLabel from './setting/HotLabel';
+import AllVideos from './video/AllVideos';
 // import Announcement from './setting/Announcement';
 const AnnouncementBundle = Loadable({
     // 按需加载富文本配置
@@ -34,5 +35,6 @@ export default {
     AllOrders,
     VipSetting,
     HotLabel,
-    UserPlay
+    UserPlay,
+    AllVideos
 };

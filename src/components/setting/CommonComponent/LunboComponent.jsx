@@ -277,7 +277,7 @@ class EditableTable extends React.Component {
                                     title: '',
                                     coverpic: '',
                                     playerId: '',
-                                    colunmName: '',
+                                    colunmName: this.props.colunmName,
                                 });
                                 this.setState({
                                     data: NewData,
